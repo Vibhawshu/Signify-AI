@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help Center | Sign Language Platform</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #5a67d8;
+      --primary-dark: #4c51bf;
+      --secondary: #667eea;
+      --accent: #764ba2;
+      --highlight: #9f7aea;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --card-bg: rgba(255, 255, 255, 0.08);
+      --card-hover-bg: rgba(255, 255, 255, 0.15);
+      --glass-effect: rgba(255, 255, 255, 0.05);
+      --text-light: rgba(255, 255, 255, 0.95);
+      --text-lighter: rgba(255, 255, 255, 0.7);
+      --sidebar-width: 280px;
+      --help-color: #ff6b6b;
+      --law-color: #4facfe;
+      --ngo-color: #00c6fb;
+      --edu-color: #a18cd1;
+      --emergency-color: #ff7676;
+      --success-color: #38ef7d;
+      --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    }
+    
+    /* Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      display: flex;
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--secondary), var(--accent));
+      color: var(--text-light);
+      font-family: 'Poppins', sans-serif;
+      position: relative;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(102, 126, 234, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(118, 75, 162, 0.15) 0%, transparent 40%);
+      z-index: -1;
+    }
+    
+    /* Glass Morphism Effect */
+    .glass-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+      transition: var(--transition);
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.03) 0%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      pointer-events: none;
+    }
+    
+    .glass-card:hover {
+      background: var(--card-hover-bg);
+      transform: translateY(-8px);
+      box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.2),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Sidebar - Enhanced */
+    .sidebar {
+      width: var(--sidebar-width);
+      background: rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(15px);
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      transition: var(--transition);
+      z-index: 10;
+    }
+    
+    .user-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-bottom: 1.5rem;
+      object-fit: cover;
+      border: 3px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      transition: var(--transition);
+    }
+    
+    .sidebar:hover .user-avatar {
+      transform: scale(1.05) rotate(5deg);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem;
+      position: relative;
+      overflow-y: auto;
+    }
+    
+    /* Header with Animated Gradient Text */
+    header {
+      margin-bottom: 3rem;
+      text-align: center;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      position: relative;
+      display: inline-block;
+      background: linear-gradient(90deg, #fff, var(--highlight), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      background-size: 300% 300%;
+      animation: gradientText 8s ease infinite;
+    }
+    
+    @keyframes gradientText {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    h1::after {
+      content: '';
+      display: block;
+      width: 120px;
+      height: 5px;
+      background: linear-gradient(90deg, var(--highlight), var(--accent));
+      margin: 1.5rem auto;
+      border-radius: 3px;
+      opacity: 0.8;
+    }
+    
+    /* Search Bar - Modern */
+    .search-container {
+      max-width: 700px;
+      margin: 2rem auto;
+      position: relative;
+      width: 100%;
+    }
+    
+    .search-input {
+      width: 100%;
+      padding: 1.2rem 2rem;
+      padding-right: 60px;
+      border-radius: 50px;
+      border: none;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(10px);
+      color: white;
+      font-size: 1rem;
+      font-weight: 500;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+    }
+    
+    .search-input:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.18);
+      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .search-input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 400;
+    }
+    
+    .search-btn {
+      position: absolute;
+      right: 6px;
+      top: 6px;
+      background: linear-gradient(135deg, var(--highlight), var(--accent));
+      border: none;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(159, 122, 234, 0.3);
+    }
+    
+    .search-btn:hover {
+      transform: scale(1.05) rotate(10deg);
+      box-shadow: 0 6px 20px rgba(159, 122, 234, 0.4);
+    }
+    
+    /* Quick Links - Bubble Style */
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 1.5rem auto;
+      max-width: 800px;
+      justify-content: center;
+    }
+    
+    .quick-link {
+      padding: 0.8rem 1.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50px;
+      text-decoration: none;
+      color: white;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+    }
+    
+    .quick-link:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .quick-link i {
+      font-size: 1.1rem;
+    }
+    
+    /* Tab System - Modern */
+    .tab-container {
+      display: flex;
+      gap: 0.5rem;
+      margin: 2.5rem auto 1.5rem;
+      background: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      padding: 0.5rem;
+      border-radius: 50px;
+      max-width: max-content;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .tab-btn {
+      padding: 0.8rem 1.8rem;
+      background: transparent;
+      border: none;
+      border-radius: 50px;
+      color: var(--text-lighter);
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: 600;
+      font-size: 0.95rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .tab-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--highlight), var(--accent));
+      opacity: 0;
+      transition: var(--transition);
+      z-index: -1;
+    }
+    
+    .tab-btn.active {
+      color: white;
+      background: rgba(255, 255, 255, 0.15);
+    }
+    
+    .tab-btn.active::before {
+      opacity: 1;
+    }
+    
+    .tab-btn:hover:not(.active) {
+      color: white;
+      background: rgba(255, 255, 255, 0.08);
+    }
+    
+    /* Section Titles */
+    .section-title {
+      font-size: 2.2rem;
+      margin: 3.5rem 0 2rem;
+      position: relative;
+      padding-bottom: 0.8rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--highlight), transparent);
+      border-radius: 2px;
+    }
+    
+    /* Resource Grid */
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    
+    /* Card Styles */
+    .card {
+      padding: 2rem;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    
+    .card h3 i {
+      font-size: 1.6rem;
+    }
+    
+    .card p {
+      color: var(--text-lighter);
+      margin-bottom: 1.2rem;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    
+    .card ul {
+      margin: 1.2rem 0 1.5rem 1.8rem;
+    }
+    
+    .card ul li {
+      margin-bottom: 0.6rem;
+      position: relative;
+    }
+    
+    .card ul li::before {
+      content: '•';
+      color: var(--highlight);
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+    
+    /* Category Cards */
+    .law-card {
+      border-left: 4px solid var(--law-color);
+    }
+    
+    .ngo-card {
+      border-left: 4px solid var(--ngo-color);
+    }
+    
+    .emergency-card {
+      border-left: 4px solid var(--emergency-color);
+    }
+    
+    .edu-card {
+      border-left: 4px solid var(--edu-color);
+    }
+    
+    /* Status Badges */
+    .badge {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+    
+    .badge-new {
+      background: rgba(56, 239, 125, 0.15);
+      color: var(--success-color);
+      border: 1px solid rgba(56, 239, 125, 0.3);
+    }
+    
+    .badge-hot {
+      background: rgba(255, 118, 118, 0.15);
+      color: var(--emergency-color);
+      border: 1px solid rgba(255, 118, 118, 0.3);
+    }
+    
+    /* Action Buttons */
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50px;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: 0.5rem;
+    }
+    
+    .action-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .action-btn i {
+      transition: transform 0.3s ease;
+    }
+    
+    .action-btn:hover i {
+      transform: translateX(3px);
+    }
+    
+    /* Video Container */
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      margin: 3rem 0;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    
+    /* State Selector */
+    .state-selector {
+      margin: 2rem auto;
+      max-width: 400px;
+    }
+    
+    select {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      border-radius: 50px;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(10px);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 1rem;
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 1.5rem center;
+      background-size: 1rem;
+      transition: var(--transition);
+    }
+    
+    select:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.18);
+      box-shadow: 0 0 0 2px rgba(159, 122, 234, 0.4);
+    }
+    
+    /* Floating Help Button */
+    .floating-help-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--help-color), #ff8e8e);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      box-shadow: 0 8px 30px rgba(255, 107, 107, 0.4);
+      z-index: 100;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .floating-help-btn:hover {
+      transform: scale(1.1) rotate(15deg);
+      box-shadow: 0 12px 40px rgba(255, 107, 107, 0.5);
+    }
+    
+    /* Animations */
+    @keyframes floatIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .main-content > * {
+      animation: floatIn 0.6s ease-out forwards;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+      .resource-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      }
+    }
+    
+    @media (max-width: 992px) {
+      body {
+        flex-direction: column;
+      }
+      
+      .sidebar {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 1.5rem;
+        align-items: center;
+      }
+      
+      .user-avatar {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 0;
+      }
+      
+      .main-content {
+        padding-top: 1rem;
+      }
+      
+      h1 {
+        font-size: 2.2rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .tab-container {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .tab-btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+      }
+      
+      .search-input {
+        padding: 1rem 1.5rem;
+        padding-right: 50px;
+      }
+      
+      .search-btn {
+        width: 42px;
+        height: 42px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .resource-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .card {
+        padding: 1.5rem;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating Shapes Background -->
+  <div class="floating-shapes">
+    <div class="shape" style="width: 150px; height: 150px; top: 10%; left: 5%; animation-duration: 20s;"></div>
+    <div class="shape" style="width: 100px; height: 100px; top: 70%; left: 80%; animation-duration: 15s;"></div>
+    <div class="shape" style="width: 200px; height: 200px; top: 60%; left: 30%; animation-duration: 25s;"></div>
+    <div class="shape" style="width: 80px; height: 80px; top: 20%; left: 70%; animation-duration: 18s;"></div>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <img src="https://via.placeholder.com/120" alt="User Avatar" class="user-avatar">
+    <div>
+      <h2>viva</h2>
+      <p>ID: #123456</p>
+    </div>
+    <a href="#" class="logout-btn">
+      <i class="fas fa-sign-out-alt"></i> Logout
+    </a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <header>
+      <h1><i class="fas fa-hands-helping"></i> Deaf Community Help Center</h1>
+      <p class="text-lighter">Comprehensive resources and support for India's deaf and hard-of-hearing community</p>
+    </header>
+
+    <!-- Search Section -->
+    <div class="search-container">
+      <input type="text" class="search-input" placeholder="Search for NGOs, laws, emergency contacts...">
+      <button class="search-btn"><i class="fas fa-search"></i></button>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="quick-links">
+      <a href="#laws" class="quick-link"><i class="fas fa-gavel"></i> Legal Rights</a>
+      <a href="#ngos" class="quick-link"><i class="fas fa-hands-helping"></i> NGOs</a>
+      <a href="#education" class="quick-link"><i class="fas fa-school"></i> Education</a>
+      <a href="#emergency" class="quick-link"><i class="fas fa-ambulance"></i> Emergency</a>
+      <a href="#jobs" class="quick-link"><i class="fas fa-briefcase"></i> Jobs</a>
+      <a href="#isl" class="quick-link"><i class="fas fa-sign-language"></i> Learn ISL</a>
+    </div>
+
+    <!-- Tab Navigation -->
+    <div class="tab-container">
+      <button class="tab-btn active" onclick="openTab('national')"><i class="fas fa-globe-asia"></i> National</button>
+      <button class="tab-btn" onclick="openTab('state')"><i class="fas fa-map-marker-alt"></i> State-wise</button>
+      <button class="tab-btn" onclick="openTab('learn')"><i class="fas fa-sign-language"></i> Learn ISL</button>
+    </div>
+
+    <!-- National Resources Tab -->
+    <div id="national" class="tab-content active">
+      <!-- Laws Section -->
+      <h2 id="laws" class="section-title"><i class="fas fa-balance-scale"></i> Legal Rights & Schemes</h2>
+      <div class="resource-grid">
+        <div class="glass-card law-card">
+          <h3><i class="fas fa-file-alt"></i> RPWD Act 2016 <span class="badge badge-new">IMPORTANT</span></h3>
+          <p>The Rights of Persons with Disabilities Act guarantees fundamental rights and accessibility:</p>
+          <ul>
+            <li><strong>5% reservation</strong> in government jobs and higher education</li>
+            <li><strong>Free education</strong> for children up to age 18</li>
+            <li>Mandatory <strong>accessibility standards</strong> for public spaces</li>
+            <li>Legal protection against <strong>discrimination</strong></li>
+          </ul>
+          <a href="https://www.disabilityaffairs.gov.in" class="action-btn">
+            Read Full Act <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="glass-card law-card">
+          <h3><i class="fas fa-rupee-sign"></i> Government Schemes</h3>
+          <ul>
+            <li><strong>ADIP Scheme:</strong> Free hearing aids and assistive devices</li>
+            <li><strong>Scholarships:</strong> Up to ₹50,000/year for higher education</li>
+            <li><strong>Travel Concessions:</strong> 75% discount in Indian Railways</li>
+            <li><strong>Skill Development:</strong> Free vocational training programs</li>
+          </ul>
+          <a href="https://www.swavlambancard.gov.in" class="action-btn">
+            Apply Now <i class="fas fa-external-link-alt"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- NGOs Section -->
+      <h2 id="ngos" class="section-title"><i class="fas fa-hands-helping"></i> Major NGOs in India</h2>
+      <div class="resource-grid">
+        <div class="glass-card ngo-card">
+          <h3><i class="fas fa-hospital"></i> AYJNISHD <span class="badge badge-hot">MULTI-CITY</span></h3>
+          <p><strong>Services:</strong> Hearing tests, education, rehabilitation, ISL training</p>
+          <p><strong>Locations:</strong> Mumbai, Delhi, Kolkata, Secunderabad</p>
+          <div class="quick-links" style="margin-top: 1rem; justify-content: start;">
+            <a href="tel:+911126472320" class="quick-link"><i class="fas fa-phone"></i> Call</a>
+            <a href="http://ayjnihh.nic.in" class="quick-link"><i class="fas fa-globe"></i> Website</a>
+            <a href="#" class="quick-link"><i class="fas fa-map-marked-alt"></i> Directions</a>
+          </div>
+        </div>
+
+        <div class="glass-card ngo-card">
+          <h3><i class="fas fa-gavel"></i> National Association of the Deaf</h3>
+          <p><strong>Services:</strong> Legal aid, advocacy, disability rights awareness</p>
+          <p><strong>Helpline:</strong> +91-11-2647-3154 (Monday-Friday, 10AM-5PM)</p>
+          <a href="http://nadindia.org" class="action-btn">
+            Contact NAD <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="glass-card ngo-card">
+          <h3><i class="fas fa-child"></i> DeafKidz International</h3>
+          <p><strong>Focus:</strong> Children's education & safety programs</p>
+          <p><strong>Programs:</strong> ISL storytelling, anti-abuse training, parent support</p>
+          <a href="https://deafkidzinternational.org" class="action-btn">
+            View Programs <i class="fas fa-external-link-alt"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Emergency Section -->
+      <h2 id="emergency" class="section-title"><i class="fas fa-ambulance"></i> Emergency Contacts</h2>
+      <div class="resource-grid">
+        <div class="glass-card emergency-card">
+          <h3><i class="fas fa-police-box"></i> Police Assistance</h3>
+          <p><strong>Pan-India SMS Service for Deaf:</strong></p>
+          <p style="font-size: 1.8rem; margin: 1.5rem 0; font-weight: 700; color: white;">Text "HELP" to <strong>112</strong></p>
+          <p>Available in Hindi, English, and 10 regional languages. Response within 5 minutes.</p>
+        </div>
+
+        <div class="glass-card emergency-card">
+          <h3><i class="fas fa-stethoscope"></i> Medical & Mental Health</h3>
+          <ul>
+            <li><strong>Mental Health Helpline:</strong> Vandrevala Foundation - +91-9999-666-555 (24/7)</li>
+            <li><strong>Video Relay Service:</strong> Sambhav Foundation (ISL interpreters)</li>
+            <li><strong>COVID Support:</strong> Text "COVID" to 9013151515</li>
+            <li><strong>Women's Helpline:</strong> 1091 (SMS available)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- State-wise Help Tab -->
+    <div id="state" class="tab-content">
+      <div class="state-selector">
+        <select id="state-select" onchange="showStateResources()">
+          <option value="">Select Your State</option>
+          <option value="delhi">Delhi</option>
+          <option value="maharashtra">Maharashtra</option>
+          <option value="tamilnadu">Tamil Nadu</option>
+          <option value="karnataka">Karnataka</option>
+          <option value="westbengal">West Bengal</option>
+          <option value="kerala">Kerala</option>
+          <option value="gujarat">Gujarat</option>
+        </select>
+      </div>
+
+      <div id="state-resources" style="display: none;">
+        <h3 class="section-title" id="state-name"></h3>
+        <div class="resource-grid" id="state-content">
+          <!-- Content will be loaded dynamically -->
+        </div>
+      </div>
+
+      <div id="no-state" style="text-align: center; margin-top: 3rem; opacity: 0.7;">
+        <i class="fas fa-map-marked-alt" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+        <h3>Select your state to view local resources</h3>
+        <p>We provide location-specific NGOs, schools, and support groups</p>
+      </div>
+    </div>
+
+    <!-- Learning ISL Tab -->
+    <div id="learn" class="tab-content">
+      <h2 id="isl" class="section-title"><i class="fas fa-sign-language"></i> Learn Indian Sign Language</h2>
+      
+      <div class="video-container">
+        <iframe width="560" height="315" src="assets/intro.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+
+      <div class="resource-grid">
+        <div class="glass-card edu-card">
+          <h3><i class="fas fa-mobile-alt"></i> ISL Learning Apps</h3>
+          <ul>
+            <li><strong>ISLRTC Dictionary:</strong> Official app with 10,000+ signs</li>
+            <li><strong>SignAble:</strong> Daily life conversations with quizzes</li>
+            <li><strong>HandTalk:</strong> AI-powered sign translation</li>
+            <li><strong>Signily:</strong> Keyboard with ISL emojis</li>
+          </ul>
+          <div class="quick-links" style="margin-top: 1rem; justify-content: start;">
+            <a href="#" class="quick-link"><i class="fab fa-google-play"></i> Play Store</a>
+            <a href="#" class="quick-link"><i class="fab fa-apple"></i> App Store</a>
+          </div>
+        </div>
+
+        <div class="glass-card edu-card">
+          <h3><i class="fas fa-chalkboard-teacher"></i> Online Courses</h3>
+          <ul>
+            <li><strong>ISLRTC Free Courses:</strong> Basic to Advanced levels</li>
+            <li><strong>NPTEL:</strong> Certificate programs from IITs</li>
+            <li><strong>Udemy:</strong> Affordable courses with tutors</li>
+            <li><strong>YouTube:</strong> Free lessons from deaf educators</li>
+          </ul>
+          <a href="#" class="action-btn">
+            Browse Courses <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Education Section -->
+      <h2 id="education" class="section-title"><i class="fas fa-school"></i> Education Resources</h2>
+      <div class="resource-grid">
+        <div class="glass-card edu-card">
+          <h3><i class="fas fa-university"></i> Schools for Deaf</h3>
+          <ul>
+            <li><strong>Delhi:</strong> Modern School for Deaf (Barakhamba Road)</li>
+            <li><strong>Mumbai:</strong> Helen Keller Institute (Multiple branches)</li>
+            <li><strong>Chennai:</strong> Clarke School for Deaf (Adyar)</li>
+            <li><strong>Bangalore:</strong> Karnataka Welfare Association for the Deaf</li>
+          </ul>
+        </div>
+
+        <div class="glass-card edu-card">
+          <h3><i class="fas fa-graduation-cap"></i> Higher Education</h3>
+          <ul>
+            <li><strong>IGNOU:</strong> Special programs for deaf students</li>
+            <li><strong>Aligarh Muslim University:</strong> Dedicated disability cell</li>
+            <li><strong>IITs/NITs:</strong> 5% reservation with support services</li>
+            <li><strong>ISLRTC:</strong> Diploma in ISL teaching</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Employment Section -->
+      <h2 id="jobs" class="section-title"><i class="fas fa-briefcase"></i> Employment Opportunities</h2>
+      <div class="resource-grid">
+        <div class="glass-card">
+          <h3><i class="fas fa-building"></i> Government Jobs</h3>
+          <p>5% reservation in:</p>
+          <ul>
+            <li>All central/state government departments</li>
+            <li>Public sector banks and financial institutions</li>
+            <li>Indian Railways, Defense, and PSUs</li>
+            <li>Teaching positions in special schools</li>
+          </ul>
+          <a href="https://www.disabilityjobs.gov.in" class="action-btn">
+            Explore Jobs <i class="fas fa-external-link-alt"></i>
+          </a>
+        </div>
+
+        <div class="glass-card">
+          <h3><i class="fas fa-laptop-code"></i> Private Sector</h3>
+          <ul>
+            <li><strong>TCS:</strong> Deaf-friendly workplace with interpreters</li>
+            <li><strong>Infosys:</strong> Special hiring drives annually</li>
+            <li><strong>Amazon:</strong> Remote work options with accommodations</li>
+            <li><strong>Startups:</strong> Graphic design, content moderation roles</li>
+          </ul>
+          <div class="quick-links" style="margin-top: 1rem; justify-content: start;">
+            <a href="#" class="quick-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="#" class="quick-link"><i class="fas fa-search"></i> Job Portals</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Help Button -->
+  <div class="floating-help-btn" onclick="window.location.href='#emergency'">
+    <i class="fas fa-hands-helping"></i>
+  </div>
+
+  <script>
+    // Tab functionality
+    function openTab(tabName) {
+      const tabs = document.getElementsByClassName('tab-content');
+      for (let i = 0; i < tabs.length; i++) {
+        tabs[i].classList.remove('active');
+      }
+      
+      const tabBtns = document.getElementsByClassName('tab-btn');
+      for (let i = 0; i < tabBtns.length; i++) {
+        tabBtns[i].classList.remove('active');
+      }
+      
+      document.getElementById(tabName).classList.add('active');
+      event.currentTarget.classList.add('active');
+      
+      // Smooth scroll to top
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    // State resources data
+    const stateData = {
+      delhi: {
+        name: "Delhi Resources",
+        content: `
+          <div class="glass-card">
+            <h3><i class="fas fa-hospital"></i> AYJNISHD Delhi</h3>
+            <p><strong>Address:</strong> Kasturba Niketan, Lajpat Nagar-II</p>
+            <p><strong>Services:</strong> Hearing tests, ISL training, counseling</p>
+            <p><strong>Contact:</strong> 011-2984-2320 (10AM-5PM)</p>
+            <div class="quick-links" style="margin-top: 1rem; justify-content: start;">
+              <a href="tel:+911129842320" class="quick-link"><i class="fas fa-phone"></i> Call</a>
+              <a href="#" class="quick-link"><i class="fas fa-calendar-alt"></i> Book Appointment</a>
+            </div>
+          </div>
+          <div class="glass-card">
+            <h3><i class="fas fa-gavel"></i> Delhi Disability Rights Commission</h3>
+            <p><strong>Services:</strong> Legal aid, grievance redressal</p>
+            <p><strong>Helpline:</strong> 011-2337-9104</p>
+            <p><strong>Email:</strong> ddrcdelhi@gov.in</p>
+          </div>
+          <div class="glass-card">
+            <h3><i class="fas fa-school"></i> Special Schools in Delhi</h3>
+            <ul>
+              <li>Modern School for Deaf (Barakhamba Road)</li>
+              <li>Indian Sign Language Research Center</li>
+              <li>Action for Ability Development (AADI)</li>
+            </ul>
+          </div>
+        `
+      },
+      maharashtra: {
+        name: "Maharashtra Resources",
+        content: `
+          <div class="glass-card">
+            <h3><i class="fas fa-school"></i> Helen Keller Institute</h3>
+            <p><strong>Branches:</strong> Mumbai, Pune, Nagpur</p>
+            <p><strong>Programs:</strong> Vocational training, ISL classes</p>
+            <p><strong>Contact:</strong> 022-2262-2626</p>
+          </div>
+          <div class="glass-card">
+            <h3><i class="fas fa-hands-helping"></i> Deaf Foundation</h3>
+            <p><strong>Services:</strong> Job placement, skill development</p>
+            <p><strong>Location:</strong> Dadar, Mumbai</p>
+            <p><strong>Email:</strong> info@deaffoundation.org</p>
+          </div>
+        `
+      },
+      tamilnadu: {
+        name: "Tamil Nadu Resources",
+        content: `
+          <div class="glass-card">
+            <h3><i class="fas fa-hospital"></i> Clarke School for Deaf</h3>
+            <p><strong>Location:</strong> Adyar, Chennai</p>
+            <p><strong>Since:</strong> 1945</p>
+            <p><strong>Programs:</strong> Education K-12, vocational training</p>
+          </div>
+        `
+      }
+    };
+
+    function showStateResources() {
+      const stateSelect = document.getElementById('state-select');
+      const stateResources = document.getElementById('state-resources');
+      const noState = document.getElementById('no-state');
+      
+      if (stateSelect.value && stateData[stateSelect.value]) {
+        const state = stateData[stateSelect.value];
+        document.getElementById('state-name').innerHTML = `<i class="fas fa-map-marker-alt"></i> ${state.name}`;
+        document.getElementById('state-content').innerHTML = state.content;
+        stateResources.style.display = 'block';
+        noState.style.display = 'none';
+        
+        // Smooth scroll to state section
+        stateResources.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        stateResources.style.display = 'none';
+        noState.style.display = 'block';
+      }
+    }
+
+    // Search functionality
+    document.querySelector('.search-input').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        alert('Search functionality will be implemented in the next version');
+      }
+    });
+
+    document.querySelector('.search-btn').addEventListener('click', function() {
+      alert('Search functionality will be implemented in the next version');
+    });
+
+    // Animate cards on scroll
+    const observerOptions = {
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.glass-card').forEach(card => {
+      card.style.opacity = 0;
+      card.style.transform = 'translateY(20px)';
+      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(card);
+    });
+  </script>
+</body>
+</html>
